@@ -1,22 +1,21 @@
-/**
- * 
- */
 package myPackage;
 
 /**
- * Created by keith for the second coursework assignment.
- */
-public class Fraction
-{
+ * Created by Keith, modified by Fabricio Graminhani together with Renan Salviato
+*/
+
+
+public class Fraction{
+
 	private int numerator;
 	private int denominator;
 	
 	//This constructor uses the GCD method to make sure fractions are created in their
-	//most simplified form, e.g.: user enters 4/6 but the actual fraction created is 2/3. 
-	public Fraction(int num, int denom)
-	{
-		if (denom == 0)
-		{
+	//most simplified form, for example if user enters 8/6, the actual fraction created is 2/3. 
+	public Fraction(int num, int denom){
+	
+		if (denom == 0){
+		
 			System.out.println("Invalid fraction with denominator 0");
 			// this should use exceptions
 			return;
@@ -28,39 +27,41 @@ public class Fraction
 	}
 	
 	@Override
-	public String toString()
-	{
-		if(this.getDenominator() == 1) // IF block added to meet assignment criteria on modifying toString()
-		{
+	public String toString(){
+		
+		//Improved toString method to return the numerator (as a String) if the
+		//numerator is 1
+		if(this.getDenominator() == 1){
+		
 			return "" + getNumerator();
 		}
 		
 		return "" + getNumerator() + '/' + getDenominator();
 	}
 	
-	public int getNumerator()
-	{
+	public int getNumerator(){
+	
 		return numerator;
 	}
 	
-	public void setNumerator(int num)
-	{
+	public void setNumerator(int num){
+	
 		numerator = num;
 	}
 	
-	public int getDenominator()
-	{
+	public int getDenominator(){
+	
 		return denominator;
 	}
 	
-	public void setDenominator(int num)
-	{
+	public void setDenominator(int num){
+	
 		denominator = num;
 	}
 	
 	@Override
-	public boolean equals(Object o)
-	{
+	public boolean equals(Object o){
+	
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Fraction fraction = (Fraction) o;
@@ -70,46 +71,46 @@ public class Fraction
 	}
 	
 	@Override
-	public int hashCode()
-	{
+	public int hashCode(){
+	
 		int result = numerator;
 		result = 31 * result + denominator;
 		return result;
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani
-	public Fraction add(Fraction other)
-	{
+	//add method makes use of the myLcd method to perform the addition
+	public Fraction add(Fraction other){
+	
 		int denom = myLcd(this.getDenominator(),other.getDenominator());
 		int num = (denom / this.getDenominator() * this.getNumerator()) + (denom / other.getDenominator() * other.getNumerator());
 		return new Fraction(num, denom);
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani
-	public Fraction subtract(Fraction other)
-	{
+	//subtract method also makes use of the myLcd method to perform the addition
+	public Fraction subtract(Fraction other){
+	
 		int denom = myLcd(this.getDenominator(),other.getDenominator());
 		int num = (denom / this.getDenominator() * this.getNumerator()) - (denom / other.getDenominator() * other.getNumerator());
 		return new Fraction(num, denom);
 	}
 	
-	public Fraction multiply(Fraction other)
-	{
+	public Fraction multiply(Fraction other){
+	
 		int num = this.getNumerator() * other.getNumerator();
 		int denom = this.getDenominator() * other.getDenominator();
 		return new Fraction(num, denom);
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani
-	public Fraction divide(Fraction other)
-	{
+	//divide method 
+	public Fraction divide(Fraction other){
+	
 		int num = this.getNumerator() * other.getDenominator();
 		int denom = this.getDenominator() * other.getNumerator();
 		return new Fraction(num, denom);
 	}
 	
-	private int myGcd(int a, int b)
-	{
+	private int myGcd(int a, int b){
+	
 		while (b != 0)
 		{
 			int t = b;
@@ -119,18 +120,17 @@ public class Fraction
 	return a;
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani and
-	//utilises Keith's myGcd()
-	private int myLcd(int a, int b)
-	{
+	//method used to get the Lower Common Denominator. To be used in the add 
+	//and subtract methods
+	private int myLcd(int a, int b){
+	
 		 return ((a*b)/myGcd(a,b));
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani
-	//If either numerator or denominator in the calling object is negative, it creates
+	//If either numerator or denominator negative, it creates
 	//a new fraction object with positive values
-	public Fraction absValue()
-	{
+	public Fraction absValue(){
+	
 		int a = this.getNumerator();
 		int b = this.getDenominator();
 		
@@ -147,10 +147,9 @@ public class Fraction
 		return new Fraction (a,b);
 	}
 	
-	//This method created by Renan Salviato and Fabricio Graminhani
 	//It simply multiplies the fraction by -1 to change its sign as per assignment criteria
-	public Fraction negate()
-	{
+	public Fraction negate(){
+	
 		int a = this.getNumerator() * -1;
 		int b = this.getDenominator();
 				

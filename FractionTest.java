@@ -1,21 +1,17 @@
-/**
- * 
- */
 package myPackage;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-/**
- * @author fabgraham
- *
- */
-public class FractionTest
-{		
+/*
+ * Created by Fabricio Graminhani together with Renan Salviato
+*/
+ 
+public class FractionTest{	
+	
 	@Test
-	public void testAdd()
-	{
+	public void testAdd(){
+	
 		Fraction a = new Fraction(1,2);
 		Fraction b = new Fraction(1,3);
 		Fraction res = new Fraction(5,6);		
@@ -24,8 +20,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testSubtract()
-	{
+	public void testSubtract(){
+	
 		Fraction a = new Fraction(1,2);
 		Fraction b = new Fraction(1,-4);
 		Fraction res = new Fraction(3,4);		
@@ -34,8 +30,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testMultiply()
-	{
+	public void testMultiply(){
+	
 		Fraction a = new Fraction(-3,1);
 		Fraction b = new Fraction(6,1);
 		Fraction res = new Fraction(-18,1);		
@@ -44,8 +40,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testDivide()
-	{
+	public void testDivide(){
+	
 		Fraction a = new Fraction(8,4);
 		Fraction b = new Fraction(1,2);
 		Fraction res = new Fraction(4,1);		
@@ -54,8 +50,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testAbsValue()
-	{
+	public void testAbsValue(){
+	
 		Fraction a = new Fraction(8,2);
 		Fraction res = new Fraction(4,1);
 		
@@ -80,8 +76,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testNegate()
-	{
+	public void testNegate(){
+	
 		Fraction a = new Fraction(8,2);
 		Fraction res = new Fraction(-8,2);
 		
@@ -106,8 +102,8 @@ public class FractionTest
 	}
 	
 	@Test
-	public void testToString()
-	{
+	public void testToString(){
+	
 		Fraction a = new Fraction(8,1);
 		String res = "8";
 		
