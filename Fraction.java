@@ -111,13 +111,13 @@ public class Fraction{
 	
 	private int myGcd(int a, int b){
 	
-		while (b != 0)
-		{
+		while (b != 0){
+			
 			int t = b;
 			b = a % b;
 			a = t;
 		}
-	return a;
+		return a;
 	}
 	
 	//method used to get the Lower Common Denominator. To be used in the add 
@@ -134,13 +134,13 @@ public class Fraction{
 		int a = this.getNumerator();
 		int b = this.getDenominator();
 		
-		if (a < 0)
-		{
+		if (a < 0){
+			
 			a = a * -1; 
 		}
 				
-		if (b < 0)
-		{
+		if (b < 0){
+			
 			b = b * -1;
 		}		
 		
