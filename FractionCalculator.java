@@ -20,32 +20,81 @@ public class FractionCalculator{
 
 	public static void main (String []args){
 
-		Scanner in = new Scanner(System.in);	
-		System.out.println("Welcome to Fabricio Graminhani's Fraction Calculator: ");
-		System.out.println("Please enter the expression to be evaluated: ");
-		while (in.hasNext()) {
-			String input = in.nextLine();
+		Scanner keyboard = new Scanner(System.in);	
+		System.out.println("Welcome to Fabricio Graminhani's Fraction Calculator");
+		System.out.print("Please enter the expression to be evaluated: ");
+		while (keyboard.hasNext()) {
+			
+			String input = keyboard.nextLine();
+			
 			try {
+				
 				evaluate(result, input);
+				
 			} catch (EOFException e) {
-				System.out.println("Goodbye");
-				in.close();
+				
+				System.out.println("Goodbye!");
+				keyboard.close();
 				System.exit(0);
+				
 			} catch (IllegalAccessException e) {
+				
+				System.out.println("Error");
 				result.setNumerator(0);
 				result.setDenominator(1);
-				System.out.println("Error");
+				
 			} 
+			
 			System.out.println(result);
 		}
-		in.close();
+		keyboard.close();
 	}
 	
-	/*
+	
 	public static void evaluate(Fraction frac, String inputString) throws EOFException, IllegalAccessException {
 
+		//takes each token divided by demiliter " "(spaces)
+		StringTokenizer st = new StringTokenizer(inputString, " ");
+
+		while (st.hasMoreTokens()) {
+
+			userInput = st.nextToken();
+
+			if (userInput.contains("/") || userInput.matches("\\d")){
+
+				checkIsFraction(userInput);
+
+				if (frac.getNumerator() == 0)	{
+
+					frac = frac.add(inputFraction);
+				}
+			}
+			if (userInput.equals("+")) {
+
+				remValue = "+";
+
+			} else if (userInput.equals("-")) {
+
+				remValue = "-";
+
+			} else if (userInput.equals("*")) {
+
+				remValue = "*";
+
+			} else if (userInput.equals("/")) {
+
+				remValue = "/";
+			}
+			
+			//If input does not match, an exception is thrown 
+			else  {
+				throw new IllegalAccessException();
+			}
+		}
 	}
-	*/
+
+	
+	
 	
 	// The "\\d" idea to check if it is a digit I got from Stack Overflow:
     //http://stackoverflow.com/questions/15111420/how-to-check-if-a-string-contains-only-digits-in-java
