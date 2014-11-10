@@ -14,7 +14,7 @@ public class FractionCalculator{
 	 private static int denom = 0;
 	 private static String userInput = "";
 	 private static String remValue = "";
-	 private static Fraction result = new Fraction(0, 1);
+	 private static Fraction fracValue = new Fraction(0, 1);
 	 private static Fraction inputFraction = new Fraction(0, 1);
 	 
 
@@ -29,23 +29,23 @@ public class FractionCalculator{
 
 			 try{
 
-				 evaluate(result, input);
+				 evaluate(fracValue, input);
 
 			 }catch (EOFException e){
 
-				 System.out.println("Goodbye!");
+				 System.out.println("Goodbye!");//message if user quits 
 				 keyboard.close();
 				 System.exit(0);
 
 			 }catch (IllegalAccessException e){
 
-				 System.out.println("Error");
-				 result.setNumerator(0);
-				 result.setDenominator(1);
+				 resetInput();//method resets all input variables
+				 System.out.println("Error, the program will reset.");
+				 
 
 			 } 
 
-			 System.out.println(result);
+			 System.out.println(fracValue);
 		 }
 
 		 keyboard.close();
@@ -54,7 +54,7 @@ public class FractionCalculator{
 	
 	 public static void evaluate(Fraction frac, String inputString) throws EOFException, IllegalAccessException {
 
-		 //takes each token divided by demiliter " "(spaces)
+		 //takes each token divided by delimiter " "(spaces)
 		 StringTokenizer st = new StringTokenizer(inputString, " ");
 
 		 while (st.hasMoreTokens()){
@@ -65,12 +65,11 @@ public class FractionCalculator{
 
 				 checkIsFraction(userInput);
 
-				 if (frac.getNumerator() == 0){
+			 }if (frac.getNumerator() == 0){
 
-					 frac = frac.add(inputFraction);
-				 }
-			 }
-			 if (userInput.equals("+")){
+				 frac = frac.add(inputFraction);
+
+			 }if (userInput.equals("+")){
 
 				 remValue = "+";
 
@@ -85,67 +84,83 @@ public class FractionCalculator{
 			 }else if (userInput.equals("/")){
 
 				 remValue = "/";
-			 }
 
-			 if (userInput.matches("a") || userInput.matches("A") || userInput.matches("abs")){
+			 }if (userInput.matches("a") || userInput.matches("A") || userInput.matches("abs")){
 
 				 frac = frac.absValue();
 
-			 }else if (userInput.matches("n") || userInput.matches("N") ||userInput.matches("neg")) {
+			 }else if (userInput.matches("n") || userInput.matches("N") || userInput.matches("neg")) {
 
 				 frac = frac.negate();
 
-			 }else if (userInput.matches("c") || userInput.matches("C") ||userInput.matches("clear")) {
+			 }else if (userInput.matches("c") || userInput.matches("C") || userInput.matches("clear")) {
 
 				 frac.setNumerator(0);
 				 frac.setDenominator(1);
 
-			 }else if (userInput.matches("q") || userInput.matches("Q") ||userInput.matches("quit")) {
+			 }else if (userInput.matches("q") || userInput.matches("Q") || userInput.matches("quit")) {
 
 				 throw new EOFException();
 			 }
 
 			 //If input does not match, an exception is thrown 
 			 else{
-				 
+
 				 throw new IllegalAccessException();
 			 }
-		 }
-	 }
-	 
 
+
+			 //loop to try to do the operations
+			 while (st.hasMoreTokens() && !(remValue.equals(""))){
+				 
+				 //More code here...
+			 }
+		 }
+
+	 }
 	
-	
-	
+	 //method to reset operations
+	 public static void resetInput(){
+		 
+		 fracValue.setNumerator(0);
+		 fracValue.setDenominator(1);
+		 inputFraction.setNumerator(0);
+		 inputFraction.setDenominator(1);
+		 remValue = "";
+	 }
+
 	 // The "\\d" idea to check if it is a digit I got from Stack Overflow:
 	 //http://stackoverflow.com/questions/15111420/how-to-check-if-a-string-contains-only-digits-in-java
 	 //method checks if it is a fraction and sets it to object inputFraction
 	 public static void checkIsFraction(String s) throws NumberFormatException{
-		 if (s.matches("\\d")){
 
-			 num = Integer.parseInt(s);
-			 inputFraction.setNumerator(num);
-			 inputFraction.setDenominator(1);
+		 try{
+			 if (s.matches("\\d")){
 
-		 }else if (s.contains("/")){
+				 num = Integer.parseInt(s);
+				 inputFraction.setNumerator(num);
+				 inputFraction.setDenominator(1);
 
-			 StringTokenizer st = new StringTokenizer(s, "/");
-			 try{
+			 }else if (s.contains("/")){
 
+				 StringTokenizer st = new StringTokenizer(s, "/");
 				 num = Integer.parseInt(st.nextToken());
 				 denom = Integer.parseInt(st.nextToken());
 				 inputFraction.setNumerator(num);
 				 inputFraction.setDenominator(denom);
-
-			 }catch (NumberFormatException e){
-
-				 result.setNumerator(0);
-				 result.setDenominator(1);
-				 System.out.println("Error");
 			 }
+		 }catch (NumberFormatException e){
+
+			 resetInput();
+			 System.out.println("Error");
 		 }
 	 }
+	 
 }
+		 
+		 
+	 
+
 		
 
 
