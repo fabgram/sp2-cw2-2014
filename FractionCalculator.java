@@ -65,11 +65,13 @@ public class FractionCalculator{
 
 				 checkIsFraction(userInput);
 
-			 }if (frac.getNumerator() == 0){
+			 }else if (frac.getNumerator() == 0){
 
 				 frac = frac.add(inputFraction);
+				 
+			//conditionals for the operators
 
-			 }if (userInput.equals("+")){
+			 }else if (userInput.equals("+")){
 
 				 remValue = "+";
 
@@ -84,6 +86,8 @@ public class FractionCalculator{
 			 }else if (userInput.equals("/")){
 
 				 remValue = "/";
+				 
+			//conditionals for the modifiers
 
 			 }if (userInput.matches("a") || userInput.matches("A") || userInput.matches("abs")){
 
@@ -112,12 +116,55 @@ public class FractionCalculator{
 
 			 //loop to try to do the operations
 			 while (st.hasMoreTokens() && !(remValue.equals(""))){
-				 
-				 //More code here...
+
+				 if (remValue.equals("+")){
+
+					 userInput = st.nextToken();
+
+				 }else{
+
+					 checkIsFraction(userInput);
+					 frac = frac.add(inputFraction);
+					 remValue = "";
+
+				 }if (remValue.equals("-")){
+
+					 userInput = st.nextToken();
+
+				 }else{
+
+					 checkIsFraction(userInput);
+					 frac = frac.subtract(inputFraction);
+					 remValue = "";
+
+				 }if (remValue.equals("*")){
+
+					 userInput = st.nextToken();
+
+				 }else{
+
+					 checkIsFraction(userInput);
+					 frac = frac.multiply(inputFraction);
+					 remValue = "";
+
+				 }if (remValue.equals("/")){
+
+					 userInput = st.nextToken();
+
+				 }else{
+
+					 checkIsFraction(userInput);
+					 frac = frac.divide(inputFraction);
+					 remValue = "";
+				 }
 			 }
+
 		 }
 
+		 // result of evaluation
+		 fracValue = frac;
 	 }
+
 	
 	 //method to reset operations
 	 public static void resetInput(){

@@ -11,16 +11,24 @@ import org.junit.Test;
  * Created by Fabricio Graminhani 
 */
 
-/*
+
 public class FractionCalculatorTest {
 
 	@Test
-	public void testcheckIsFraction() {
+	public void testreset() {
 
-		assertTrue(FractionCalculator.checkIsFraction(1));
-		assertTrue(FractionCalculator.checkIsFraction("/ -"));
-		assertTrue(FractionCalculator.checkIsFraction("*"));
+		assertTrue(FractionCalculator.resetInput("2"));
+		assertTrue(FractionCalculator.resetInput("-3"));
 	}
 	
+	@Test
+	public void testcheckIsFraction() {
+
+		assertTrue(FractionCalculator.checkIsFraction("2/3"));
+		assertTrue(FractionCalculator.checkIsFraction("-3/4"));
+	}
+	
+	
+	
 }
-*/
+
